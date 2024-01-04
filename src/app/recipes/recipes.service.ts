@@ -8,8 +8,9 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class RecipesService {
+  private recipes: Recipe[] = []
   public recipesChanged: Subject<Recipe[]> = new Subject<Recipe[]>();
-
+  /*
   private recipes: Recipe[] = [
     new Recipe(
       'Tasty Schnitzel',
@@ -28,11 +29,16 @@ export class RecipesService {
       ]
     ),
   ];
-
+  */
   constructor(private shoppingListService: ShoppingListService) {}
 
   public getRecipes(): Recipe[] {
     return this.recipes.slice();
+  }
+
+  public setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
   }
 
   public addIngredientsToShoppingList(ingredients: Ingredient[]): void {
