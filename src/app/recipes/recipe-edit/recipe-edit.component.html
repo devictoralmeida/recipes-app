@@ -41,6 +41,7 @@
               class="form-control"
               formControlName="imagePath"
               appTrimOnBlur
+              (keydown.space)="$event.preventDefault();"
               #imagePath
             />
           </div>
